@@ -1,7 +1,4 @@
-FROM python:3.10
+FROM python
 
-# Arguments
-ARG ENV_NAME
-
-# Environment Variables
-ENV ENV_NAME=$PROJECT_NAME
+# Install dependencies
+RUN pip install -r requirements.txt
