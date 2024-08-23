@@ -1,5 +1,8 @@
 FROM python
 
+# Set the local directory as an environment variable
+ARG CURRENT_DIR
+
 # Set working directory to /home
 WORKDIR /home
 
@@ -11,13 +14,21 @@ RUN mkdir /home/model
 COPY .config/requirements.txt /home/files
 
 # Copy model folder from local to /home/model
+COPY /files /home/files
 COPY /model /home/model
 
 # Install dependencies
 RUN pip install -r /home/files/requirements.txt 
 
+# Install Jupyter kernel
+RUN python -m ipykernel install --user --name=$CURRENT_DIR
+
 # Mount current directory to /home
 VOLUME $(pwd):/home
 
+# Expose the container so my local environment can use the kernel
+# Don't forget to include the -p 8888:8888 flag in the docker run command to map the local port to the image's
+EXPOSE 8888
+
 # Set default command to start a bash shell
-CMD ["/bin/bash"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
