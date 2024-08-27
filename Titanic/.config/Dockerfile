@@ -28,6 +28,7 @@ VOLUME $(pwd):/home
 
 # Expose the container so my local environment can use the kernel
 # Don't forget to include the -p 8888:8888 flag in the docker run command to map the local port to the image's
+# Not doing so (even in the EC2 server) prevents the local VS Code IDE from connecting to AWS
 EXPOSE 8888
 
 # Set default command to start a bash shell
