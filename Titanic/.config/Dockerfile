@@ -23,6 +23,12 @@ RUN pip install -r /home/files/requirements.txt
 # Install Jupyter kernel
 RUN python -m ipykernel install --user --name=$CURRENT_DIR
 
+# Generate Jupyter config file
+RUN jupyter notebook --generate-config
+
+# Modify Jupyter config file to disable the token
+RUN echo "c.NotebookApp.token = ''" >> ~/.jupyter/jupyter_notebook_config.py
+
 # Mount current directory to /home
 VOLUME $(pwd):/home
 
@@ -32,4 +38,4 @@ VOLUME $(pwd):/home
 EXPOSE 8888
 
 # Set default command to start a bash shell
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root, --NotebookApp.token=''"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
