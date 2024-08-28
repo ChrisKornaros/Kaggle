@@ -32,4 +32,4 @@ VOLUME $(pwd):/home
 EXPOSE 8888
 
 # Set default command to start a bash shell
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root, --NotebookApp.token=''"]
