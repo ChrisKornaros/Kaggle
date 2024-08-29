@@ -1,0 +1,14 @@
+## Notes on the Titanic model and the process for using the Jupyter Kernel on the EC2 Server
+:::{}
+1. First, navigate to Local-Scripts/.AWS/.EC2_Scripts and run the ec2_start.sh script
+   ```zsh ec2_start.sh```
+2. Next, execute the unix_test_dns.sh script to store the EC2 public DNS in the /etc/hosts file
+   ```./unix_test_dns.sh```
+3. Use the ssh -i command to connect to the EC2 server, then run the Jupyter kernel image
+    ```docker run -p 8888:8888 titanic-env```
+4. Now that it's running. Use a different terminal window (or the VS Code IDE) and test the DNS name.
+   ```ping unix_test.local```
+5. In VS Code, open the .ipynb file in the model folder and continue work.
+   1. If you need to reconnect to a kernel, use the Titanic preset.
+   2. VS Code connects to the EC2 IPv4 address, even though the Kernel tells you 127.0.0.1
+:::
