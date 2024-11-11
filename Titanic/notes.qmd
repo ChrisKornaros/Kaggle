@@ -12,3 +12,15 @@
    1. If you need to reconnect to a kernel, use the Titanic preset.
    2. VS Code connects to the EC2 IPv4 address, even though the Kernel tells you 127.0.0.1
 :::
+
+### If you need to modify the container
+- Do so locally, or anywhere, and then push the change to the GitHub repoistory
+- Then, pull the changes into the EC2 server
+- Clear the Docker library/cache, and then rebuild the image from scratch, use the following
+```docker build --no-cache -t titanic-env -f .config/Dockerfile .```
+- Ensure this is done from the main project folder and uses those flags
+  - For Titanic, this is in the admin/Kaggle/Titanic folder in the EC2 instance
+  - `--no-cache` ensures it's a fresh build (This will take a while)
+  - `-t` sets the name of the image
+  - `-f` lets you specify the Dockerfile location
+  - `.` lets Docker know that your current working directory is where the build context should take place
