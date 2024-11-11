@@ -14,8 +14,8 @@ RUN mkdir /home/model
 COPY .config/requirements.txt /home/files
 
 # Copy model folder from local to /home/model
-COPY files /home/files
-COPY model /home/model
+COPY /files /home/files
+COPY /model /home/model
 
 # Install dependencies
 RUN pip install -r /home/files/requirements.txt 
