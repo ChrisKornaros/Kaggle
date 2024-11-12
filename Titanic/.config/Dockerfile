@@ -18,10 +18,10 @@ COPY /files /home/files
 COPY /model /home/model
 
 # Install dependencies
-#RUN pip install -r /home/files/requirements.txt
-RUN pip install pandas
-RUN pip install duckdb
-RUN pip install scikit-learn
+RUN pip install -r /home/files/requirements.txt
+#RUN pip install pandas
+#RUN pip install duckdb
+#RUN pip install scikit-learn
 
 # Install Jupyter kernel
 RUN python -m ipykernel install --user --name=$CURRENT_DIR
