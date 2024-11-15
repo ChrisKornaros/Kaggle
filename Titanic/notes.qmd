@@ -4,14 +4,17 @@
    ```zsh ec2_start.sh```
 2. Next, execute the unix_test_dns.sh script to store the EC2 public DNS in the /etc/hosts file
    ```./unix_test_dns.sh```
-3. Use the ssh -i command to connect to the EC2 server, then run the Jupyter kernel image
-    ```docker run -p 8888:8888 titanic-env```
+3. Use the ssh -i command to connect to the EC2 server, then run the Jupyter kernel image 
+    ```docker run -p 8888:8888 titanic-env``` **Look into adding a volume mount command here to persist model/file changes in the EC2**
 4. Now that it's running. Use a different terminal window (or the VS Code IDE) and test the DNS name.
    ```ping unix_test.local``` **Need to make this DNS dynamic**
 5. In VS Code, open the .ipynb file in the model folder and continue work.
    1. If you need to reconnect to a kernel, use the Titanic preset.
    2. VS Code connects to the EC2 IPv4 address, even though the Kernel tells you 127.0.0.1
 6. The format for connecting to the Public IPv4 is `http://IPv4:8888/`
+7. To pull the file out of the container and store it on the EC2 server
+   1. `docker cp 786853360d97:/home/files/titanic_submission.csv files/titanic_submission.csv`
+   2. docker copy `instance-id`:`/path/to/file` `local/path`
 :::
 
 ### If you need to modify the container
